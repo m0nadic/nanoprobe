@@ -3,8 +3,8 @@ package cmd
 import (
 	"fmt"
 	"github.com/spf13/cobra"
+	"nanoprobe/internal/app/server"
 	"nanoprobe/internal/app/utils"
-	"os"
 )
 
 var webCmd = &cobra.Command{
@@ -15,11 +15,13 @@ var webCmd = &cobra.Command{
 		cfg, err := utils.LoadConfig(cfgFile)
 
 		if err != nil {
-			fmt.Fprintln(os.Stderr, "ERROR:", err)
-			os.Exit(1)
+			utils.ErrorExit(1, err)
 		}
 
-		fmt.Println(cfg)
+		err = server.StartWebServer(cfg)
+		if err != nil {
+			utils.ErrorExit(1, err)
+		}
 	},
 }
 
