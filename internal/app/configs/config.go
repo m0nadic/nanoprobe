@@ -1,6 +1,6 @@
 package configs
 
 type Config struct {
-	Host string
-	Port int64
+	Server   *ServerConfig
+	Database *DatabaseConfig
 }

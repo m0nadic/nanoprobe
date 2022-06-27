@@ -13,5 +13,5 @@ func StartWebServer(cfg *configs.Config) error {
 			"status": "OK",
 		})
 	})
-	return router.Run(fmt.Sprintf("%s:%d", cfg.Host, cfg.Port))
+	return router.Run(fmt.Sprintf("%s:%d", cfg.Server.Host, cfg.Server.Port))
 }
